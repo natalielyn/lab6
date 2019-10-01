@@ -14,15 +14,15 @@ var hours = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm
 ];
 
 
-var Location = function(location, minCustHr, maxCustHr, avgCookiesPerCust) {
-    this.location; location
+var Location = function(locationcity, minCustHr, maxCustHr, avgCookiesPerCust) {
+    this.locationcity; locationcity
     this.minCustHr; minCustHr
     this.maxCustHr; maxCustHr
     this.avgCookiesPerCust; avgCookiesPerCust
     this.cookiesPurchasePerHour; cookiesPurchasePerHour
 };
 
-Location.prototype.location = function(){
+Location.prototype.locationcity = function(){
   console.log(this.location);
 },
 Location.prototype.minCustHr = function(){
@@ -44,14 +44,14 @@ Location.prototype.renderlocation = render;
 function avgCustomersPerHour() {
   var customers = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
    return customers;
-},
+}
 
 function avgCookieSales() {
   var sales = this.avgCustomersPerHour() * this.avgCookiesPerCust;
    sales = Math.floor(sales);
    this.cookiesPurchasePerHour.push(sales);
    return sales;
-  },
+  }
 
 function totalCookieSales() {
     var cookieSum = 0;
@@ -61,7 +61,17 @@ function totalCookieSales() {
     return cookieSum;
   }
 
+  function render(){
+    var locationslistElement = document.getElementById('locationslist');
+
   
+    var article = document.createElement('article');
+    article.setAttribute('id', `${this.locationcity.toLowerCase()}`);
+    locationsListElement.appendChild(article);
+
+    var h2 = document.createElement('h2');
+    h2.textContent = this.locationcity;
+    article.appendChild(h2);
 
 
 
@@ -70,8 +80,7 @@ function totalCookieSales() {
 
 
 
-
-//Seattle Object
+// Seattle Object
 
 // var seattle = {
 //     location: 'seattle',
@@ -104,6 +113,9 @@ function totalCookieSales() {
 //       hours.forEach(element => {
 //         listItems.push(element + ': ' + this.avgCookieSales() + ' cookies');
 //       }); 
+
+
+      
 
 //       var locationslist = document.getElementById('locationslist');
 //       var ul = document.createElement('ul');
@@ -368,16 +380,5 @@ function totalCookieSales() {
 //     }
 //   };
 
-//   lima.render();   
-
-
-
-
-
-
-      
-
-    
-    
-    
-
+//   lima.render()
+  }
