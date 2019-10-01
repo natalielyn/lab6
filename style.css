@@ -1,44 +1,64 @@
 * {
-    font-family: 'Mansalva', cursive;
+    font-family: 'Livvic', cursive;
+    
   }
   
-  .staffSay {
-    font-style: italic;
-  }
+  
   
   body {
-    background-color: lightgray
+      text-align: center;
+    background-color: #D4C2B2;
+  }
+
+  nav {
+      list-style-type: none;
+      background-color: #EB712F;
+  }
+
+  li a {
+    list-style-type: none;
+    float: left;
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #91371B;
+    color: white;
   }
   
   h1 {
   
     height: 50px;
-    background-color: lightslategray;
+    font-size: 72px;
+    background-color: #91371B;
     
+  }
+
+  h2 {
+      background-color: #472C25;
+      color: #D4C2B2;
   }
   
   img{
   
-    max-width: 17%;
+    max-width: 30%;
     height: auto;
-    border-radius: 50%;
-    position: fixed;
-    top: 30px;
+    border-radius: 30%;
+    position: center;
+    top: 75px;
     right: 30px;
   }
   
-  .dogImg {
-    max-width: 100%;
-    float: right;
-    position: relative;
-  }
-  
+
   #content {
     margin: auto;
     width: 70%;
   }
   
-  #bendpuppy_header {
+  #salmoncookies_header {
     text-align: center;
     margin-bottom: 75px;
   }
@@ -47,10 +67,7 @@
     list-style-type: none;
   }
   
-  nav ul li {
-    float: left;
-    padding: 5px;
-  }
+  
   
   article {
     background-color: white;
@@ -68,6 +85,4 @@
     margin-top: 1px;
   }
   
-  ol {
-    padding-left: 20px;
-  }
+ 
