@@ -7,32 +7,26 @@ var Location = function(locationcity, minCustHr, maxCustHr, avgCookiesPerCust) {
   this.minCustHr; minCustHr
   this.maxCustHr; maxCustHr
   this.avgCookiesPerCust; avgCookiesPerCust;
+  allCookieLocations.push(this);
   
 };
-//Location Data
-
-var locationData = [
-  ['Seattle', 23, 65, 6.3, [] ],
-  ['Tokyo', 3, 24, 1.2, [] ],
-  ['Dubai', 11, 38, 3.7, [] ],
-  ['Paris', 20, 38, 1.3, [] ],
-  ['Seattle', 2, 16, 4.6, [] ],
-];
 
 //Store hours
+var allCookieLocations = [];
 var hours = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm',
 ];
 
-
-Location.prototype.avgCustomersPerHour = function() {
+// Number generator functions
+Location.prototype.randomCustomers = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
 };
 
+Location.prototype.renderlocation = render;
 
 Location.prototype.cookieSales = function() {
   var result = [];
    for (var i = 0; i < 15; i++) {
-     this.cookiesPurchasePerHour.push(Math.floor(this.avgCustomersPerHour() * this.avgCookiesPerCustomer));
+     this.cookiesPurchasePerHour.push(Math.floor(this.randomCustomers() * this.avgCookiesPerCustomer));
   }
     return result;
  };
@@ -45,12 +39,10 @@ Location.prototype.totalCookieSales = function() {
   return cookieSalesSum; 
 };
 
-    Location.prototype.renderlocation = render;
 
     function render(){
     var storelistElement = document.getElementById('storelist');
     }
-
     var storelistElement = document.getElementById('storelist');
 
   
@@ -65,7 +57,8 @@ Location.prototype.totalCookieSales = function() {
 //Table for data
   
   var table = document.createElement('table');
-
+ 
+  
   var row1 = document.createElement('tr');
   var row2 = document.createElement('tr');
   var row3 = document.createElement('tr');
@@ -100,12 +93,19 @@ Location.prototype.totalCookieSales = function() {
   article.appendChild(table);
 
    
+    var seattle = new Location('Seattle', 23, 65, 6.3, hours);
+    var tokyo = new Location('Toyko', 3, 24, 1.2, hours);
+    var dubai = new Location('Dubai', 11, 38, 3.7, hours);
+    var paris = new Location('Paris', 20, 38, 2.3, hours);
+    var lima = new Location('Lima', 2, 16, 4.6, hours);
+
+
 
 //Executing Code
 
 (function renderAll(data){
   for(var i=0; i < data.length; i++){
-    data[i] = new location(data[i][0], data[i][1],data[i][2],data[i][3],data[i][4]);
+    data[i] = new Location(data[i][0], data[i][1],data[i][2],data[i][3],data[i][4]);
     data[i].totalCookieSales();
     data[i].locationcity();
     data[i].hours();
