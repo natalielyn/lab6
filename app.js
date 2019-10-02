@@ -1,11 +1,11 @@
 'use strict';
 
 var locationData = [
-  ['Seattle', 23, 65, 6.3, [] ],
-  ['Tokyo', 3, 24, 1.2, [] ],
-  ['Dubai', 11, 38, 3.7, [] ],
-  ['Paris', 20, 38, 1.3, [] ],
-  ['Seattle', 2, 16, 4.6, [] ],
+  ['Seattle', 23, 65, 6.3],
+  ['Tokyo', 3, 24, 1.2 ],
+  ['Dubai', 11, 38, 3.7 ],
+  ['Paris', 20, 38, 1.3 ],
+  ['Seattle', 2, 16, 4.6 ],
 
 
 ];
@@ -23,7 +23,7 @@ var Location = function(locationcity, minCustHr, maxCustHr, avgCookiesPerCust) {
 };
 
 Location.prototype.locationcity = function(){
-  console.log(this.location);
+  console.log(this.locationcity);
 },
 Location.prototype.minCustHr = function(){
   console.log(this.minCustHr);
@@ -41,25 +41,31 @@ Location.prototype.cookiesPurchasePerHour = function(){
 Location.prototype.renderlocation = render;
 
 
-function avgCustomersPerHour() {
-  var customers = Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
-   return customers;
+Location.prototype.avgCustomersPerHour = function() {
+  return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
+};
+
+location.prototype.avgCookieSales = function() {
+   for (var i = 0; i < 15; i++) {
+     this.cookiesPurchasePerHour.push(Math.floor(this.avgCustomersPerHour() * this.avgCookiesPerCustomer));
+  }
+
+ }
+location.prototype.totalCookieSales = function() {
+  var totalCookies = 0;
+  for (var i = 0; < this.cookiesPurchasePerHour.length; i++) {
+  totalCookies = totalCookies + this.cookiesPurchasePerHour[i];
 }
+}
+  
 
-function avgCookieSales() {
-  var sales = this.avgCustomersPerHour() * this.avgCookiesPerCust;
-   sales = Math.floor(sales);
-   this.cookiesPurchasePerHour.push(sales);
-   return sales;
-  }
-
-function totalCookieSales() {
-    var cookieSum = 0;
-     this.cookiesPurchasePerHour.forEach(element => {
-      cookieSum += element;
-    });
-    return cookieSum;
-  }
+// function totalCookieSales() {
+//     var cookieSum = 0;
+//      this.cookiesPurchasePerHour.forEach(element => {
+//       cookieSum += element;
+//     });
+//     return cookieSum;
+//   }
 
   function render(){
     var locationslistElement = document.getElementById('locationslist');
@@ -72,6 +78,19 @@ function totalCookieSales() {
     var h2 = document.createElement('h2');
     h2.textContent = this.locationcity;
     article.appendChild(h2);
+
+
+
+    //************************************ *
+//Executing Code
+
+(function renderAll(data){
+  for(var i=0; i < data.length; i++){
+    data[i] = new Location(data[i][0], data[i][1], data[i][2], data[i][3]);
+    data[i].hours();
+    data[i].renderlocation();
+  }
+})(locationData);
 
 
 
