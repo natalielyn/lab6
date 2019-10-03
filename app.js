@@ -2,7 +2,6 @@ var locationHours = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3
 var initialNumStores = 0;
 
 
-//Table for data
   
 function renderTableHead(){
   var mainElement = document.getElementById('locationdata');
@@ -67,9 +66,6 @@ function renderTableFooter() {
 
 
 
-
-
-//Location object
 function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locationHours, hourlySalesArray, initialTotalSales) {
   this.locationcity = locationcity
   this.minCustHr = minCustHr
@@ -80,7 +76,7 @@ function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locatio
   this.initialTotalSales = initialTotalSales;
 };
 
-// Number generator functions
+
   Location.prototype.avgCustomersPerHour = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
   };
@@ -127,56 +123,9 @@ Location.prototype.renderSalesData = function(){
 }; 
 
 
-// var puppyForm = document.getElementById('addPuppyForm');
-
-// puppyForm.addEventListener('submit', handleSubmit);
-
-// function handleSubmit(event){
-//   event.preventDefault();
-//   var name = event.target.name.value;
-//   var breed = event.target.breed.value;
-//   var description = event.target.description.value;
-//   var staffsay = event.target.staffsay.value;
-//   var arrAdditionalInfo = [];
-
-//   arrAdditionalInfo.push(event.target.isGoodWithOtherDogs.checked? 'Good with Dogs': 'Not Good With Dogs');
-//   arrAdditionalInfo.push(event.target.isGoodWithCats.checked? 'Good with Cats': 'Not Good With Cats');
-//   arrAdditionalInfo.push(event.target.isGoodWithKids.checked? 'Good with Kids': 'Not Good With Kids');
-  
-
-//   var newPuppy = new Puppy(name, '', breed, staffsay, description, arrAdditionalInfo);
-//   newPuppy.generateAge();
-//   newPuppy.renderPup();
-//   console.log('finished creating form dog');
-// }
-
-var newLocationForm = document.getElementById('addLocationForm');
-
-newLocationForm.addEventListener('submit', handleSubmit);
-
-function handleSubmit(event){
-  // event.preventDefault();
-  var locationcity = event.target.locationcity.value;
-  var minCustHr = event.target.minCustHr.value;
-  var maxCustHr = event.target.maxCustHr.value;
-  var avgCookiesPerCust = event.target.avgCookiesPerCust.value;
-
-  var newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust);
-  newLocation.avgCookieSales();
-  newLocation.avgCustomersPerHour();
-  newLocation.totalCookieSales();
-  newLocation.renderSalesData();
-}
-  
-
-
-
-
-
-
-  
 renderTableHead(); 
-   
+renderTableFooter();
+
 var seattle = new Location('Seattle', 23, 65, 6.3);
 seattle.renderSalesData();
 
@@ -191,10 +140,26 @@ paris.renderSalesData();
 
 var lima = new Location('Lima', 2, 16, 4.6);
 lima.renderSalesData();
-    
 
-//Executing Code
+    
+var newLocationForm = document.getElementById('addLocationForm');
+
+newLocationForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event){
+  event.preventDefault();
+  var locationcity = event.target.locationcity.value;
+  var minCustHr = event.target.minCustHr.value;
+  var maxCustHr = event.target.maxCustHr.value;
+  var avgCookiesPerCust = event.target.avgCookiesPerCust.value;
+
+  var newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust);
+  
+  newLocation.renderSalesData();
+}
   
 
-renderTableFooter();
+  
+  
+
 
