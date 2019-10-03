@@ -62,7 +62,7 @@ function renderTableFooter() {
   var tableHeadingElement = document.createElement('th');
   tableHeadingElement.textContent = 'Hourly Total: ';
   tableHeadingElement.setAttribute('scope', 'row');
-  tableRowElement.appendChild(tableHeadingElement);
+  tr.appendChild(tableHeadingElement);
 };
 
 
@@ -125,6 +125,55 @@ Location.prototype.renderSalesData = function(){
   tr.appendChild(td);
   
 }; 
+
+
+// var puppyForm = document.getElementById('addPuppyForm');
+
+// puppyForm.addEventListener('submit', handleSubmit);
+
+// function handleSubmit(event){
+//   event.preventDefault();
+//   var name = event.target.name.value;
+//   var breed = event.target.breed.value;
+//   var description = event.target.description.value;
+//   var staffsay = event.target.staffsay.value;
+//   var arrAdditionalInfo = [];
+
+//   arrAdditionalInfo.push(event.target.isGoodWithOtherDogs.checked? 'Good with Dogs': 'Not Good With Dogs');
+//   arrAdditionalInfo.push(event.target.isGoodWithCats.checked? 'Good with Cats': 'Not Good With Cats');
+//   arrAdditionalInfo.push(event.target.isGoodWithKids.checked? 'Good with Kids': 'Not Good With Kids');
+  
+
+//   var newPuppy = new Puppy(name, '', breed, staffsay, description, arrAdditionalInfo);
+//   newPuppy.generateAge();
+//   newPuppy.renderPup();
+//   console.log('finished creating form dog');
+// }
+
+var newLocationForm = document.getElementById('addLocationForm');
+
+newLocationForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event){
+  // event.preventDefault();
+  var locationcity = event.target.locationcity.value;
+  var minCustHr = event.target.minCustHr.value;
+  var maxCustHr = event.target.maxCustHr.value;
+  var avgCookiesPerCust = event.target.avgCookiesPerCust.value;
+
+  var newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust);
+  newLocation.avgCookieSales();
+  newLocation.avgCustomersPerHour();
+  newLocation.totalCookieSales();
+  newLocation.renderSalesData();
+}
+  
+
+
+
+
+
+
   
 renderTableHead(); 
    
