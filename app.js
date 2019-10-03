@@ -37,21 +37,26 @@ function renderTableHead(){
   tableRowElement.appendChild(tableHeadingElement);
 }
 
-function renderTableFooter(){
-  var table = document.getElementsByTagName('table');
+function renderTableFooter() {
+  var table = document.getElementById('table');
 
-  var tableFooterElement = document.createElement ('tfoot');
-  table.appendChild(tableFooterElement);
+  var tfoot = document.createElement ('tfoot');
+  table.appendChild(tfoot);
 
-  var tableRowElement = document.createElement('tr');
-  tableRowElement.setAttribute('id', 'totalTarget');
-  tableFooterElement.appendChild(tableRowElement);
+  var tr = document.createElement('tr');
+  tr.setAttribute('id', 'totals');
+  tfoot.appendChild(tr);
+
+  var th = document.createElement('th');
+  th.textContent = 'Hourly Total';
+  th.setAttribute('scope', 'row');
+  tr.appendChild(th);
 
   for(var i = 0; i < locationHours.length; i++) {
     var tdHourlyTotal = document.createElement('th');
     tdHourlyTotal.setAttribute('scope','col');
     tdHourlyTotal.textContent = ' ';
-    tableRowElement.appendChild(thHourlyTotal);
+    tr.appendChild(tdHourlyTotal);
   }
 
   var tableHeadingElement = document.createElement('th');
@@ -100,24 +105,24 @@ function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locatio
 
 Location.prototype.renderSalesData = function(){
   var table = document.getElementById('table');
-  var tableRowElement = document.createElement('tr');
-  table.appendChild(tableRowElement);
+  var tr = document.createElement('tr');
+  table.appendChild(tr);
 
   var tableHeadingElement = document.createElement('th');
   tableHeadingElement.setAttribute('scope', 'row');
   tableHeadingElement.textContent = `${this.locationcity}:`;
-  tableRowElement.appendChild(tableHeadingElement);
+  tr.appendChild(tableHeadingElement);
 
   for(var i = 0; i < locationHours.length; i++){
     var tableDataElement = document.createElement('td');
     tableDataElement.setAttribute('class', `${locationHours[i]}`);
     tableDataElement.textContent = (`${this.avgCookieSales()[i]}`);
-    tableRowElement.appendChild(tableDataElement);
+    tr.appendChild(tableDataElement);
   }
   td = document.createElement('td');
   td.setAttribute('class', 'total');
-  td.textContent = `${this.avgCookieSales()}`;
-  tableRowElement.appendChild(td);
+  td.textContent = `${this.totalCookieSales()[i]}`;
+  tr.appendChild(td);
   
 }; 
   
