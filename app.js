@@ -2,7 +2,6 @@ var locationHours = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3
 var initialNumStores = 0;
 
 
-//Table for data
   
 function renderTableHead(){
   var mainElement = document.getElementById('locationdata');
@@ -62,14 +61,11 @@ function renderTableFooter() {
   var tableHeadingElement = document.createElement('th');
   tableHeadingElement.textContent = 'Hourly Total: ';
   tableHeadingElement.setAttribute('scope', 'row');
-  tableRowElement.appendChild(tableHeadingElement);
+  tr.appendChild(tableHeadingElement);
 };
 
 
 
-
-
-//Location object
 function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locationHours, hourlySalesArray, initialTotalSales) {
   this.locationcity = locationcity
   this.minCustHr = minCustHr
@@ -80,7 +76,7 @@ function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locatio
   this.initialTotalSales = initialTotalSales;
 };
 
-// Number generator functions
+
   Location.prototype.avgCustomersPerHour = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
   };
@@ -125,9 +121,11 @@ Location.prototype.renderSalesData = function(){
   tr.appendChild(td);
   
 }; 
-  
+
+
 renderTableHead(); 
-   
+renderTableFooter();
+
 var seattle = new Location('Seattle', 23, 65, 6.3);
 seattle.renderSalesData();
 
@@ -142,10 +140,26 @@ paris.renderSalesData();
 
 var lima = new Location('Lima', 2, 16, 4.6);
 lima.renderSalesData();
-    
 
-//Executing Code
+    
+var newLocationForm = document.getElementById('addLocationForm');
+
+newLocationForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event){
+  event.preventDefault();
+  var locationcity = event.target.locationcity.value;
+  var minCustHr = event.target.minCustHr.value;
+  var maxCustHr = event.target.maxCustHr.value;
+  var avgCookiesPerCust = event.target.avgCookiesPerCust.value;
+
+  var newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust);
+  
+  newLocation.renderSalesData();
+}
   
 
-renderTableFooter();
+  
+  
+
 
