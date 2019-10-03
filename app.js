@@ -38,13 +38,21 @@ function renderTableHead(){
 }
 
 function renderTableFooter(){
-  var table = document.getElementsByTagName('table')[0];
+  var table = document.getElementsByTagName('table');
+
   var tableFooterElement = document.createElement ('tfoot');
   table.appendChild(tableFooterElement);
 
   var tableRowElement = document.createElement('tr');
   tableRowElement.setAttribute('id', 'totalTarget');
   tableFooterElement.appendChild(tableRowElement);
+
+  for(var i = 0; i < locationHours.length; i++) {
+    var tdHourlyTotal = document.createElement('th');
+    tdHourlyTotal.setAttribute('scope','col');
+    tdHourlyTotal.textContent = ' ';
+    tableRowElement.appendChild(thHourlyTotal);
+  }
 
   var tableHeadingElement = document.createElement('th');
   tableHeadingElement.textContent = 'Hourly Total: ';
@@ -53,7 +61,7 @@ function renderTableFooter(){
 };
 
 
-renderTableHead(); 
+
 
 
 //Location object
@@ -69,19 +77,16 @@ function Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, locatio
 
 // Number generator functions
   Location.prototype.avgCustomersPerHour = function() {
-    return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
+  return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
   };
 
   Location.prototype.avgCookieSales = function() {
-      var hourlySales = [];
-      for (var i = 0; i < 14; i++) {
-        hourlySales.push(Math.round(this.avgCustomersPerHour() * this.avgCookiesPerCust));
-      }
-      console.log(hourlySales);
+  var hourlySales = [];
+  for (var i = 0; i < 14; i++) {
+    hourlySales.push(Math.round(this.avgCustomersPerHour() * this.avgCookiesPerCust));
+     }
       return hourlySales;
  };
- 
- 
 
   Location.prototype.totalCookieSales = function() {
     var cookieSalesSum = 0;
@@ -108,15 +113,15 @@ Location.prototype.renderSalesData = function(){
     tableDataElement.setAttribute('class', `${locationHours[i]}`);
     tableDataElement.textContent = (`${this.avgCookieSales()[i]}`);
     tableRowElement.appendChild(tableDataElement);
-  
+  }
   td = document.createElement('td');
   td.setAttribute('class', 'total');
   td.textContent = `${this.avgCookieSales()}`;
-  tr.appendChild(td);
-  }
+  tableRowElement.appendChild(td);
+  
 }; 
   
-
+renderTableHead(); 
    
 var seattle = new Location('Seattle', 23, 65, 6.3);
 seattle.renderSalesData();
