@@ -78,7 +78,7 @@ function renderTableHead() {
 
 //TABLEFOOTER
   function renderTableFoot() {
-    var table = document.getElementById('table');
+    var table = document.getElementById('locationSalesLists');
 
     var tfoot = document.createElement('tfoot');
     table.appendChild(tfoot);
@@ -108,7 +108,7 @@ function renderTableHead() {
   };
 
 Location.prototype.renderSalesData = function() {
-    var table = document.getElementById('table');
+    var table = document.getElementById('locationSalesLists');
     var tr = document.createElement('tr');
     table.appendChild(tr);
     var th = document.createElement('th');
