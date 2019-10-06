@@ -49,9 +49,6 @@ function renderTableHead() {
   table.setAttribute ('id', 'table');
   section.appendChild(table);
 
-  var caption = document.createElement('caption');
-    caption.textContent = 'Sales by Time and Location';
-    table.appendChild(caption);
 
   var tableHead = document.createElement('tableHead');
   tableHead.textContent = 'Location';

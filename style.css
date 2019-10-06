@@ -1,18 +1,18 @@
-* {
-    font-family: 'Livvic', cursive;
-    
-  }
-  
-  
-  
-  body {
-      text-align: center;
-    background-color: #D4C2B2;
-  }
+
+    body {
+      background-image: url("https://raw.githubusercontent.com/DevStation-COCC/bend-201d3/master/class-09/lab-b/assets/fish.jpg");
+      background-repeat: repeat-y;
+      width: 1000px;
+      align-content: center;
+      margin: auto;
+     
+    }
+ 
 
   nav {
       list-style-type: none;
-      background-color: #EB712F;
+      background-color: #E17545;
+      font-family: 'Handlee', cursive;
   }
 
   li a {
@@ -22,25 +22,37 @@
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
+    font-family: 'Handlee', cursive;
   }
-  
+
+  li {
+    font-family: 'Handlee', cursive;
+  }
+
   li a:hover {
-    background-color: #91371B;
+    background-color: #E17545;
     color: white;
+    
   }
   
   h1 {
   
     height: 50px;
     font-size: 72px;
-    background-color: #91371B;
+    font-family: 'Barriecito', cursive;
     
   }
 
   h2 {
-      background-color: #472C25;
-      color: #D4C2B2;
+      background-color: #353C45;
+      color: white;
+      font-family: 'Barriecito', cursive;
   }
+
+ p {
+   font-family: 'Handlee', cursive;
+   font-size: 20px;
+ }
   
   img{
   
@@ -92,5 +104,32 @@
   #locationSalesLists {
     background-color: white;
   }
+
+  #fampic {
+    float: right;
+  }
+
+  fieldset {
+    font-family: 'Handlee', cursive;
+    background-color: #A6A09D;
+    align-content: center;
+  }
+
+  legend {
+    font-size: 30px;
+  }
+
+tr {
+  padding:10px;
+  background-color: #E17545;
+}
+
+td {
+  padding: 10px;
+}
+
+
+
+
   
  
