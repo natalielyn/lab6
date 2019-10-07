@@ -21,12 +21,11 @@ var Location = function (locationcity, minCustHr, maxCustHr, avgCookiesPerCust, 
   this.totalDailySales = totalDailySales;
 };
 
-//random customer generator
+
 Location.prototype.avgCustomersPerHour = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
   };
 
-//cookies sales per hour and store within location object
   Location.prototype.avgCookieSales = function() {
   for (var i = 0; i < locationHours.length; i++) {
     var salesByHour = Math.round(this.avgCustomersPerHour() * this.avgCookiesPerCust);
@@ -72,8 +71,6 @@ function renderTableHead() {
 
 };
 
-
-//TABLEFOOTER
   function renderTableFoot() {
     var table = document.getElementById('locationSalesLists');
 
@@ -112,11 +109,11 @@ Location.prototype.renderSalesData = function() {
     th.textContent = `${this.locationcity}:`;
     tr.appendChild(th);
 
-  for(var i = 0; i < locationHours.length; i++){
-    var sales = this.salesByHour[i];
-    var td = document.createElement('td');
-    td.textContent = sales;
-    tr.appendChild(td);
+    for(var i = 0; i < locationHours.length; i++){
+      var sales = this.salesByHour[i];
+      var td = document.createElement('td');
+      td.textContent = sales;
+      tr.appendChild(td);
 }
 
   td = document.createElement('td');
@@ -142,7 +139,6 @@ function handleSubmit(event){
   newLocation.totalCookieSales();
   newLocation.renderSalesData();
   removeFooter();
-  renderTableFoot(); 
 }
 
 function removeFooter() {

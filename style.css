@@ -34,6 +34,10 @@
     color: white;
     
   }
+
+  #merch {
+    text-align: center;
+  }
   
   h1 {
   
@@ -47,6 +51,11 @@
       background-color: #353C45;
       color: white;
       font-family: 'Barriecito', cursive;
+  }
+
+  h3 {
+    font-family: 'Barriecito', cursive;
+    text-align: center;
   }
 
  p {
@@ -68,6 +77,7 @@
   #content {
     margin: auto;
     width: 70%;
+    align-content: center;
   }
   
   #salmoncookies_header {
@@ -78,20 +88,9 @@
   ul {
     list-style-type: none;
   }
+
   
-  
-  
-  article {
-    background-color: white;
-    margin-top: 150px;
-    padding: 10px;
-    height: 300px;
-    border-radius: 7px;
-  }
-  
-  article li {
-    padding: 3px;
-  }
+
   
   h2 {
     margin-top: 1px;
@@ -109,26 +108,47 @@
     float: right;
   }
 
+  #merch {
+    align-content: center;
+  }
+
   fieldset {
     font-family: 'Handlee', cursive;
     background-color: #A6A09D;
-    align-content: center;
+    text-align: center;
   }
 
   legend {
     font-size: 30px;
   }
+#cookiepic {
+  float: right;
+}
+#orderP {
+  float: right;
+}
 
 tr {
-  padding:10px;
+ 
   background-color: #E17545;
 }
 
+th {
+  padding: 5px;
+}
+
 td {
-  padding: 10px;
+  padding: 8px;
+}
+
+#hours {
+  align-content: center;
 }
 
 
+#orderForm {
+  align-items: center;
+}
 
 
   
