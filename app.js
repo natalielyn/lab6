@@ -49,11 +49,11 @@ function renderTableHead() {
   section.appendChild(table);
 
 
-  var tableHead = document.createElement('tableHead');
+  var tableHead = document.createElement('th');
   tableHead.textContent = 'Location';
   table.appendChild(tableHead);
 
-  var tableRow = document.createElement('tableRow');
+  var tableRow = document.createElement('tr');
   tableHead.appendChild(tableRow);
   
   var th = document.createElement('th');
