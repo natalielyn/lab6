@@ -43,17 +43,17 @@ Location.prototype.avgCustomersPerHour = function() {
 
 //TABLEHEADER
 function renderTableHead() {
-  var section = document.getElementById ('locationSalesLists')
+  var section = document.getElementById ('locationSalesLists');
   var table = document.createElement('table');
   table.setAttribute ('id', 'table');
   section.appendChild(table);
 
 
-  var tableHead = document.createElement('tableHead');
+  var tableHead = document.createElement('th');
   tableHead.textContent = 'Location';
   table.appendChild(tableHead);
 
-  var tableRow = document.createElement('tableRow');
+  var tableRow = document.createElement('tr');
   tableHead.appendChild(tableRow);
   
   var th = document.createElement('th');
@@ -138,12 +138,13 @@ function handleSubmit(event){
   newLocation.avgCookieSales();
   newLocation.totalCookieSales();
   newLocation.renderSalesData();
-  removeFooter();
+  renderTableFoot();
 }
 
 function removeFooter() {
-  var table = document.getElementById('table');
-  table.deleteTFoot();
+  var section = document.getElementById('locationSalesLists');
+  var index_to_remove = section.childNodes.length -1;
+  section.removeChild(section.childNodes[index_to_remove]);
 }
   
 (function displaySales(data) {
@@ -154,6 +155,5 @@ function removeFooter() {
     data[i].totalCookieSales();
     data[i].renderSalesData();
   };
-  renderTableFoot(); 
 })(locationData);
 
