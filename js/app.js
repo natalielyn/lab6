@@ -12,8 +12,6 @@ const locationData = [
   [`Lima`, 2, 16, 4.6, [], 0],
 ];
 
-const locationArray = [];
-
 const Location = function (locationcity, minCustHr, maxCustHr, avgCookiesPerCust, salesByHour, totalDailySales) {
   this.locationcity = locationcity;
   this.minCustHr = minCustHr;
@@ -21,17 +19,19 @@ const Location = function (locationcity, minCustHr, maxCustHr, avgCookiesPerCust
   this.avgCookiesPerCust = avgCookiesPerCust;
   this.salesByHour = salesByHour;
   this.totalDailySales = totalDailySales;
+  Location.data.push(this);
 };
 
+Location.data = [];
 
 Location.prototype.avgCustomersPerHour = function() {
   return Math.floor(Math.random() * (this.maxCustHr - this.minCustHr + 1) + this.minCustHr);
   };
 
   Location.prototype.avgCookieSales = function() {
-  for (var i = 0; i < locationHours.length; i++) {
-    var salesByHour = Math.round(this.avgCustomersPerHour() * this.avgCookiesPerCust);
-    this.salesByHour.push(salesByHour);
+  for (let i = 0; i < locationHours.length; i++) {
+    let cookieSales = Math.round(this.avgCustomersPerHour() * this.avgCookiesPerCust);
+    this.salesByHour.push(cookieSales);
   }
       locationSalesByHour.push(this.salesByHour);
  };
@@ -78,12 +78,12 @@ const renderTableFoot = function() {
 
 
 
-Location.prototype.renderSalesData = function() {
+Location.prototype.renderSalesData = function(){
   $('tbody').append('<tr>');
-  $('tbody tr').append(`<th>${this.location}</th>`);
+  $('tbody tr').append(`<th>${this.locationcity}</th>`);
   for(let i = 0; i < locationHours.length; i++){
-    let sales = this.locationSalesByHour[i];
-    $('tbody tr').append(`<td>${sales}</td>`);
+    let sales = this.salesByHour[i];
+    $('tbody tr').appendTo(`<td>${sales}</td>`);
   }
   $('tbody tr').append(`<td>${this.totalDailySales}</td>`);
   $('tbody tr td').attr('class', 'total');
@@ -93,12 +93,12 @@ Location.prototype.renderSalesData = function() {
 $('#addLocationForm').on('submit', handleSubmit);
 function handleSubmit(event){
   event.preventDefault();
-  var locationcity = event.target.locationcity.value;
-  var minCustHr = event.target.minCustHr.value;
-  var maxCustHr = event.target.maxCustHr.value;
-  var avgCookiesPerCust = event.target.avgCookiesPerCust.value;
+  let locationcity = event.target.locationcity.value;
+  let minCustHr = event.target.minCustHr.value;
+  let maxCustHr = event.target.maxCustHr.value;
+  let avgCookiesPerCust = event.target.avgCookiesPerCust.value;
 
-  var newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, [], 0);
+  let newLocation = new Location(locationcity, minCustHr, maxCustHr, avgCookiesPerCust, [], 0);
   newLocation.avgCookieSales();
   newLocation.totalCookieSales();
   newLocation.renderSalesData();
