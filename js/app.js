@@ -79,14 +79,27 @@ const renderTableFoot = function() {
 
 
 Location.prototype.renderSalesData = function(){
-  $('tbody').append('<tr>');
-  $('tbody tr').append(`<th>${this.locationcity}</th>`);
-  for(let i = 0; i < locationHours.length; i++){
-    let sales = this.salesByHour[i];
-    $('tbody tr').appendTo(`<td>${sales}</td>`);
+  //Code below inspired by Travis Sklyes
+  $('<tr>').attr('id', `${this.locationcity}-row`).appendTo('#salesTable');
+  $('<td>').text(`${this.locationcity}`).appendTo(`#${this.locationcity}-row`);
+
+  for(var i = 0; i < locationHours.length; i++){
+    $('<td>').text(this.salesByHour[i]).appendTo(`#${this.locationcity}-row`);
   }
-  $('tbody tr').append(`<td>${this.totalDailySales}</td>`);
-  $('tbody tr td').attr('class', 'total');
+
+  $('<td>').attr('class', 'total').text(`${this.totalDailySales}`).appendTo(`#${this.locationcity}-row`);
+  $('#salesTable tfoot').remove();
+  renderTableFoot();
+
+
+  // $('tbody').append('<tr>');
+  // $('tbody tr').append(`<th>${this.locationcity}</th>`);
+  // for(let i = 0; i < locationHours.length; i++){
+  //   let sales = this.salesByHour[i];
+  //   $('tbody tr').appendTo(`<td>${sales}</td>`);
+  // }
+  // $('tbody tr').append(`<td>${this.totalDailySales}</td>`);
+  // $('tbody tr td').attr('class', 'total');
 };
 
 
