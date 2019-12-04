@@ -1,0 +1,46 @@
+#content {
+  margin: auto;
+  width: 70%;
+  align-content: center;
+}
+
+img{
+  
+  max-width: 30%;
+  height: auto;
+  border-radius: 30%;
+  position: center;
+  top: 75px;
+  right: 30px;
+}
+
+#addLocationForm {
+  float: left;
+}
+
+#locationSalesLists {
+  background-color: white;
+}
+
+#fampic {
+  float: right;
+}
+
+#merch {
+  align-content: center;
+}
+
+#cookiepic {
+  float: right;
+}
+#orderP {
+  float: right;
+}
+
+#hours {
+  align-content: center;
+}
+
+#orderForm {
+  align-items: center;
+}

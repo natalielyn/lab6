@@ -1,0 +1,48 @@
+body {
+  background-image: url("https://raw.githubusercontent.com/DevStation-COCC/bend-201d3/master/class-09/lab-b/assets/fish.jpg");
+  background-repeat: repeat-y;
+  width: 1000px;
+  align-content: center;
+  margin: auto;
+ 
+}
+
+li {
+  font-family: 'Handlee', cursive;
+}
+
+li a:hover {
+  background-color: #E17545;
+  color: white;
+  
+}
+
+h1 {
+  
+  height: 50px;
+  font-size: 72px;
+  font-family: 'Barriecito', cursive;
+  
+}
+
+h2 {
+    background-color: #353C45;
+    color: white;
+    font-family: 'Barriecito', cursive;
+    margin-top: 1px;
+}
+
+h3 {
+  font-family: 'Barriecito', cursive;
+  text-align: center;
+}
+
+p {
+ font-family: 'Handlee', cursive;
+ font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+}
+

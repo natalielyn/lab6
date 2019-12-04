@@ -27,26 +27,8 @@
 
             <section id="locationSalesLists"></section>
 
-            <form id="addLocationForm">
-              <fieldset>
-                <legend>Add New Store Location</legend>
-              <div>
-                <label>New Store Location</label>
-                <input name="locationcity" type="text"/>
-              </div>
-              <div>
-                <label>Daily minimum customer average</label>
-                <input name="minCustHr" type="text"/>
-              </div>  
-                <label>Daily maximum customer average</label>
-                <input name="maxCustHr" type="text"/>
-              <div>
-                <label>Daily average cookie sale per customer</label>
-                <input name="avgCookiesPerCust" type="text"/>
-              </div>
-                <button type="submit">submit</button>
-              </fieldset>
-            </form>
+           
+            <section id="charts">
             <div id="div-chart">
               <h3>Daily sales by location</h3>
               <canvas id="myPieChart"></canvas>
@@ -55,8 +37,29 @@
               <h3>Total hourly sales</h3>
               <canvas id="myBarChart"></canvas>
             </div>
+          
             
-        
+          <form id="addLocationForm">
+            <fieldset>
+              <legend>Add New Store Location</legend>
+            <div>
+              <label>New Store Location</label>
+              <input name="locationcity" type="text"/>
+            </div>
+            <div>
+              <label>Daily minimum customer average</label>
+              <input name="minCustHr" type="text"/>
+            </div>  
+              <label>Daily maximum customer average</label>
+              <input name="maxCustHr" type="text"/>
+            <div>
+              <label>Daily average cookie sale per customer</label>
+              <input name="avgCookiesPerCust" type="text"/>
+            </div>
+              <button type="submit">submit</button>
+            </fieldset>
+          </form>
+        </section>
             <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
