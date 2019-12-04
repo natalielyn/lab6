@@ -79,14 +79,17 @@ const renderTableFoot = function() {
 
 
 Location.prototype.renderSalesData = function(){
-  $('tbody').append('<tr>');
-  $('tbody tr').append(`<th>${this.locationcity}</th>`);
-  for(let i = 0; i < locationHours.length; i++){
-    let sales = this.salesByHour[i];
-    $('tbody tr').appendTo(`<td>${sales}</td>`);
+  //Code below inspired by Travis Sklyes
+  $('<tr>').attr('id', `${this.locationcity}-row`).appendTo('#salesTable');
+  $('<td>').text(`${this.locationcity}`).appendTo(`#${this.locationcity}-row`);
+
+  for(var i = 0; i < locationHours.length; i++){
+    $('<td>').text(this.salesByHour[i]).appendTo(`#${this.locationcity}-row`);
   }
-  $('tbody tr').append(`<td>${this.totalDailySales}</td>`);
-  $('tbody tr td').attr('class', 'total');
+
+  $('<td>').attr('class', 'total').text(`${this.totalDailySales}`).appendTo(`#${this.locationcity}-row`);
+  $('#salesTable tfoot').remove();
+  renderTableFoot();
 };
 
 
@@ -104,15 +107,185 @@ function handleSubmit(event){
   newLocation.renderSalesData();
 }
 
+// PIE CHART ------------------------------------------------
+let getPieLabels = function(info) {
+  const labelsArr = [];
+  for (let i=0; i < info.length; i++){
+    labelsArr.push(info[i].locationcity);
+  }
+  return labelsArr;
+};
+
+let genPieData = function(info) {
+  const dataArr = [];
+  for (let i=0; i < info.length; i++){
+    dataArr.push(info[i].totalDailySales);
+  }
+  return dataArr;
+};
+
+function makePieChart(){
+  let ctx = document.getElementById('myPieChart').getContext('2d');
+  let myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: getPieLabels(Location.data),
+      datasets: [{
+        label: 'Daily Sales',
+        data: genPieData(Location.data),
+        backgroundColor: [
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)'
+        ],
+        borderColor: [
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)'
+        ],
+        borderWidth: 1
+      },
+      ],
+    },
+  });
+}
+
+//BAR CHART ------------------------------------------------------------
+let getBarLabels = function(info) {
+  const labelsArr = [];
+  for (let i=0; i < info.length; i++){
+    labelsArr.push(info[i]);
+  }
+  return labelsArr;
+};
+
+let genBarData = function() {
+  const dataArr = [];
+  $('tfoot td').map(function() {
+    dataArr.push($(this).text());
+  });
+  dataArr.shift();
+  dataArr.pop();
+  return dataArr;
+};
+
+function makeBarChart(){
+
+  let ctx = document.getElementById('myBarChart').getContext('2d');
+  let myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: getBarLabels(locationHours),
+      datasets: [{
+        label: 'Hourly Sales',
+        data: genBarData(Location.data),
+        backgroundColor: [
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)',
+          'rgba(241, 91, 91, 1)',
+          'rgba(241, 141, 91, 1)',
+          'rgba(241, 211, 91, 1)',
+          'rgba(116, 156, 216, 1)',
+          'rgba(157, 152, 179, 1)'
+        ],
+        borderColor: [
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)',
+          'rgba(135, 135, 135, 0.57)'
+        ],
+        borderWidth: 1
+      },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+          }
+        }]
+      }
+    }
+  });
+}
+
 (function displaySales(data) {
   renderTableHead();
-  renderTableFoot();
+  $('table').append('<tbody>');
+  
   for(var i = 0; i < data.length; i++){
         data[i] = new Location(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5]);
         data[i].avgCookieSales();
         data[i].totalCookieSales();
         data[i].renderSalesData();
-      };
+      }
+     
+      makePieChart();
+      makeBarChart();
     })(locationData);
 });
 
